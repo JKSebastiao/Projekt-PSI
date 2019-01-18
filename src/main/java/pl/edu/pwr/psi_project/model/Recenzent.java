@@ -20,6 +20,7 @@ public class Recenzent implements Serializable {
     private Pracownik pracownik;
 
     @OneToMany(mappedBy = "recenzent")
+    @JsonIgnore
     private Set<PracaDyplomowa> pracyDyplomowych;
 
     public long getId() {

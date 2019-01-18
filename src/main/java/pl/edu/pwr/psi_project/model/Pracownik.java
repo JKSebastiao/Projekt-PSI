@@ -32,6 +32,15 @@ public class Pracownik  implements Serializable {
     @Enumerated(EnumType.STRING)
     private StanowiskoPracownika stanowiskoPracownika;
 
+    public Pracownik() {
+    }
+
+    public Pracownik(@NotBlank String imie, @NotBlank String nazwisko, @NotNull StopienNaukowy stopienNaukowy, @NotNull StanowiskoPracownika stanowiskoPracownika) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.stopienNaukowy = stopienNaukowy;
+        this.stanowiskoPracownika = stanowiskoPracownika;
+    }
 
     public long getId() {
         return id;

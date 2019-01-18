@@ -25,13 +25,13 @@ public class PracaDyplomowa implements Serializable {
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "Id_pracy_dyplomowej", insertable = false, updatable = false)
+    @JoinColumn(name = "id_promotora", insertable = false, updatable = false)
     @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
     @JsonIdentityReference(alwaysAsId=true)
     private Promotor promotor;
 
     @ManyToOne
-    @JoinColumn(name = "Id_pracy_dyplomowej", insertable = false, updatable = false)
+    @JoinColumn(name = "id_recenzenta", insertable = false, updatable = false)
     @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
     @JsonIdentityReference(alwaysAsId=true)
     private Recenzent recenzent;
