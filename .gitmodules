@@ -1,0 +1,3 @@
+[submodule "angular-client"]
+	path = angular-client
+	url = ./angular-client
