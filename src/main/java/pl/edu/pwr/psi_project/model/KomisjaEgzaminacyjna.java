@@ -18,7 +18,6 @@ public class KomisjaEgzaminacyjna  implements Serializable {
     private long id;
 
     @ManyToMany
-    @JsonIgnore
     @JoinTable(name = "pracownik_komisja", joinColumns = @JoinColumn(name = "id_komisji"), inverseJoinColumns = @JoinColumn(name = "id_pracownik"))
     private Set<Pracownik> komisja;
     private String sala;
