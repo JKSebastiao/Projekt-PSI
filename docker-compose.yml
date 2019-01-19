@@ -4,7 +4,7 @@ services:
  docker-client:
      image: dyplomowanie-client
      build:
-       context: src/main/client
+       context: angular-client
        dockerfile: Dockerfile
      ports:
         - "4200:4200"
