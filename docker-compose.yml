@@ -1,34 +1,34 @@
 version: '3.6'
 services:
 
- docker-client:
-     image: dyplomowanie-client
-     build:
-       context: angular-client
-       dockerfile: Dockerfile
-     ports:
-        - "4200:4200"
-        - "49153:49153"
-     expose:
-        - "4200"
-        - "49153"
-     volumes:
-        - "./:/usr/app/"
-     depends_on:
-        - docker-server
+   docker-client:
+      image: dyplomowanie-client
+      build:
+         context: angular-client
+         dockerfile: Dockerfile
+      ports:
+         - "4200:4200"
+         - "49153:49153"
+      expose:
+         - "4200"
+         - "49153"
+      volumes:
+         - "./:/usr/app/"
+      depends_on:
+         - docker-server
 
- docker-server:
-    image: psi/dyplomowanie-app
-    ports:
-      - "8080:8080"
-    depends_on:
-      - docker-postgres
+   docker-server:
+      image: psi/dyplomowanie-app
+      ports:
+         - "8080:8080"
+      depends_on:
+         - docker-postgres
 
- docker-postgres:
-    image: postgres:10.4
-    environment:
-      - POSTGRES_DB=db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+   docker-postgres:
+      image: postgres:10.4
+      environment:
+         - POSTGRES_DB=db
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=postgres
 
 
