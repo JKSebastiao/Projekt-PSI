@@ -4,20 +4,30 @@
   </div>
 </div>
 
-<form>
+<form [formGroup]="form">
   <div class="card">
     <div class="card-header">
       Informacja o pracy dyplomowej
     </div>
     <div class="card-body">
       <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="name">Tytł pracy:</label>
-          <input type="text" class="form-control" id="name">
+        <div class="form-group col-md-12">
+          <label for="tytul">Tytł pracy:</label>
+          <input type="text" class="form-control" id="tytul" formControlName="tytul">
         </div> 
-        <div class="form-group col-md-8">
-          <label for="description">Student</label>
-          <input type="text" class="form-control" id="description">
+        <div class="col-md-12" formGroupName ="student">
+            <div class="form-group">
+              <label for="imie">Imię studenta</label>
+              <input type="text" class="form-control" id="imie" formControlName="imie">
+            </div> 
+            <div class="form-group" >
+              <label for="nazwisko">Nazwisko studenta</label>
+              <input type="text" class="form-control" id="nazwisko" formControlName="nazwisko">
+            </div> 
+            <div class="form-group">
+              <label for="indeks">Indeks studenta</label>
+              <input type="text" class="form-control" id="Indeks" formControlName="indeks">
+            </div> 
         </div>     
       </div>
     </div>
