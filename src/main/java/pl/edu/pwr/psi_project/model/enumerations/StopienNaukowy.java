@@ -21,4 +21,8 @@ public enum StopienNaukowy {
     public String getSkrot() {
         return skrot;
     }
+
+    public void setSkrot(String skrot) {
+        this.skrot = skrot;
+    }
 }
