@@ -1,6 +1,7 @@
 <div class="row mb-4">
   <div class="col-md">
-    <h1 class="h2 border-left pl-2">Komisji Egzaminacyjnych</h1>
+    <br>
+    <h1 class="h2 border-left pl-2">Powołane komisje egzaminacyjne</h1>
   </div>
   <div class="col-md">
     <a routerLink="powolanie" class="btn btn-success float-right mt-2 mr-2"> + Powołaj</a>
@@ -9,20 +10,20 @@
 <table class="table table-hover">
   <thead class="bg-primary text-light">
     <tr>
-      <th>Komija</th>
+      <th>Komisja</th>
       <th>Budynek</th>
       <th>Sala</th>
       <th>Data</th>
-      <th>Opcji</th>
+      <th>Edycja</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let komijaEgzaminacyjny of komisjiEgzaminacyjine"> 
+    <tr *ngFor="let komijaEgzaminacyjny of komisjiEgzaminacyjine">
       <td>
         <div *ngFor="let czlonek of komijaEgzaminacyjny.komisja ">
             <strong>{{czlonek.pracownik.stopien}} {{czlonek.pracownik.imie}} {{czlonek.pracownik.nazwisko}} <small>{{czlonek.role}}</small></strong>
         </div>
-        
+
       </td>
       <td>
         <strong>{{komijaEgzaminacyjny.budynek}}</strong><br/>
@@ -34,7 +35,7 @@
         <strong>{{komijaEgzaminacyjny.data}}</strong><br/>
       </td>
       <td>
-        <a [routerLink]="[komijaEgzaminacyjny.id,'edit']" class="btn btn-outline-info btn-sm mr-2">Edycja</a>
+        <a [routerLink]="[komijaEgzaminacyjny.id,'edit']" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
         <button (click)="deleteKomisji(komijaEgzaminacyjny)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
       </td>
     </tr>

@@ -1,9 +1,10 @@
 <div class="row mb-4">
   <div class="col-md">
-    <h1 class="h2 border-left pl-2">Pracy Dyplomowy</h1>
+    <br>
+    <h1 class="h2 border-left pl-2">Zgłoszone prace dyplomowe</h1>
   </div>
   <div class="col-md">
-    <a routerLink="zgloszenie" class="btn btn-success float-right mt-2 mr-2"> + Zgłosuj</a>
+    <a routerLink="zgloszenie" class="btn btn-success float-right mt-2 mr-2"> + Dodaj prace</a>
   </div>
 </div>
 <table class="table table-hover">
@@ -31,7 +32,7 @@
         <strong>{{praca.student.indeks}}</strong><br/>
       </td>
       <td>
-        <a [routerLink]="[praca.id,'edit']" class="btn btn-outline-info btn-sm mr-2">Korekta</a>
+        <a [routerLink]="[praca.id,'edit']" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
         <button (click)="deletePraca(praca)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
       </td>
     </tr>
