@@ -15,4 +15,8 @@ public enum StanowiskoPracownika {
     public String getOpis() {
         return opis;
     }
+
+    public void setOpis(String opis) {
+        this.opis = opis;
+    }
 }
