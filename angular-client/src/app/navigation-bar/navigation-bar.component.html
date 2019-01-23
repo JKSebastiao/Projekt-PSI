@@ -13,7 +13,7 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Praca dyplomowa
         </a>
-        <div class="dropdown-menu"routerLinkActive="active"  aria-labelledby="navbarDropdown">
+        <div class="dropdown-menu" routerLinkActive="active"  aria-labelledby="navbarDropdown">
           <a class="dropdown-item" routerLink="/praca">Zgłoszone pracy</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" routerLink="/praca/zgloszenie">Zgłoszenie pracy</a>
@@ -37,10 +37,10 @@
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Komisja Egzaminacyjna
         </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Lista Komisji</a>
+        <div class="dropdown-menu" routerLinkActive="active" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" routerLink="/komisja" routerLinkActive="router-link-active" >Lista Komisji</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Powołanie Komisji</a>
+          <a class="dropdown-item" routerLink="/komisja/powolanie" routerLinkActive="router-link-active" >Powołanie Komisji</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>

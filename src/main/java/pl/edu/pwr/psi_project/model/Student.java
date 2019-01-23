@@ -27,6 +27,15 @@ public class Student implements Serializable {
     @JoinColumn(name = "id_pracy_dyplomowej")
     private PracaDyplomowa pracaDyplomowa;
 
+    public Student() {
+    }
+
+    public Student(@NotBlank String imie, @NotBlank String nazwisko, @NotBlank String nrIndeksu) {
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.nrIndeksu = nrIndeksu;
+    }
+
     public long getId() {
         return id;
     }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ControlErrorComponent } from './control-error.component';
+import { PowolanieComponent } from './powolanie.component';
 
-describe('ControlErrorComponent', () => {
-  let component: ControlErrorComponent;
-  let fixture: ComponentFixture<ControlErrorComponent>;
+describe('PowolanieComponent', () => {
+  let component: PowolanieComponent;
+  let fixture: ComponentFixture<PowolanieComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ControlErrorComponent ]
+      declarations: [ PowolanieComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ControlErrorComponent);
+    fixture = TestBed.createComponent(PowolanieComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

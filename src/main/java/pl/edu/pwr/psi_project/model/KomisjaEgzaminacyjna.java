@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 public class KomisjaEgzaminacyjna  implements Serializable {
@@ -18,8 +18,8 @@ public class KomisjaEgzaminacyjna  implements Serializable {
     private long id;
 
     @ManyToMany
-    @JoinTable(name = "pracownik_komisja", joinColumns = @JoinColumn(name = "id_komisji"), inverseJoinColumns = @JoinColumn(name = "id_pracownik"))
-    private Set<Pracownik> komisja;
+    @JoinTable(name = "czlonek_komisja", joinColumns = @JoinColumn(name = "id_komisji"), inverseJoinColumns = @JoinColumn(name = "id_czlonek"))
+    private List<CzlonekKomisji> czlonek;
     private String sala;
     private String budynek;
     private Date date;
@@ -32,13 +32,12 @@ public class KomisjaEgzaminacyjna  implements Serializable {
         this.id = id;
     }
 
-    public Set<Pracownik> getKomisja() {
-
-        return komisja;
+    public List<CzlonekKomisji> getCzlonek() {
+        return czlonek;
     }
 
-    public void setKomisja(Set<Pracownik> komisja) {
-        this.komisja = komisja;
+    public void setCzlonek(List<CzlonekKomisji> czlonek) {
+        this.czlonek = czlonek;
     }
 
     public String getSala() {

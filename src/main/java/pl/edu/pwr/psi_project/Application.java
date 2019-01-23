@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import pl.edu.pwr.psi_project.initDB.DBInit;
 import pl.edu.pwr.psi_project.model.Pracownik;
 import pl.edu.pwr.psi_project.model.enumerations.StanowiskoPracownika;
 import pl.edu.pwr.psi_project.model.enumerations.StopienNaukowy;
@@ -17,11 +18,10 @@ public class Application {
     }
 
     @Bean
-    public CommandLineRunner demo (final PracownikService pracownikService){
+    public CommandLineRunner demo (final DBInit dbInit){
         return (args) ->{
-            pracownikService.save(new Pracownik("Imie Pracownika 1","Nazwisko Pracownika 1",StopienNaukowy.DOKTOR_INZINIER,StanowiskoPracownika.PRACOWNIK_NAUKOWO_DYDAKTYCZNY));
-            pracownikService.save(new Pracownik("Imie Pracownika 2","Nazwisko Pracownika 2",StopienNaukowy.MAGISTER_INZINIER,StanowiskoPracownika.PELNOMOCNIK_DZIEKANA));
-            pracownikService.save(new Pracownik("Imie Pracownika 3","Nazwisko Pracownika 3",StopienNaukowy.DOKTOR,StanowiskoPracownika.PRACOWNIK_DYDAKTYCZNY));
+            dbInit.addPracowniki();
+            dbInit.addStudent();
         };
     }
 }

@@ -1,0 +1,44 @@
+<div class="row mb-4">
+  <div class="col-md">
+    <h1 class="h2 border-left pl-2">Komisji Egzaminacyjnych</h1>
+  </div>
+  <div class="col-md">
+    <a routerLink="powolanie" class="btn btn-success float-right mt-2 mr-2"> + Powołaj</a>
+  </div>
+</div>
+<table class="table table-hover">
+  <thead class="bg-primary text-light">
+    <tr>
+      <th>Komija</th>
+      <th>Budynek</th>
+      <th>Sala</th>
+      <th>Data</th>
+      <th>Opcji</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let komijaEgzaminacyjny of komisjiEgzaminacyjine"> 
+      <td>
+        <div *ngFor="let czlonek of komijaEgzaminacyjny.komisja ">
+            <strong>{{czlonek.pracownik.stopien}} {{czlonek.pracownik.imie}} {{czlonek.pracownik.nazwisko}} <small>{{czlonek.role}}</small></strong>
+        </div>
+        
+      </td>
+      <td>
+        <strong>{{komijaEgzaminacyjny.budynek}}</strong><br/>
+      </td>
+      <td>
+        <strong>{{komijaEgzaminacyjny.sala}}</strong><br/>
+      </td>
+      <td>
+        <strong>{{komijaEgzaminacyjny.data}}</strong><br/>
+      </td>
+      <td>
+        <a [routerLink]="[komijaEgzaminacyjny.id,'edit']" class="btn btn-outline-info btn-sm mr-2">Edycja</a>
+        <button (click)="deleteKomisji(komijaEgzaminacyjny)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
