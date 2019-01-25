@@ -3,6 +3,4 @@ class KomisjaEgzaminacyjna{
     budynek?: string;
     sala?: string;
     data?: String;
-
-
 }
