@@ -28,7 +28,7 @@ export class KomisjaEgzaminacyjnaComponent implements OnInit {
         {pracownik:{imie:"IP2",nazwisko:"NP3",stopienNaukowy:"dr.inz", stanowiskoPracownika:"dydatyczny-naukowo"},
         role:"Przewodniczący"},
         {pracownik:{imie:"IP1",nazwisko:"NP1",stopienNaukowy:"dr", stanowiskoPracownika:"naukowo"},
-        role:"Członek e Sekretarz"}
+        role:"Członek Sekretarz"}
       ],
       budynek:"D2",
       sala:"123",
