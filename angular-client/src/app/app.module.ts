@@ -15,8 +15,6 @@ import { KomisjaFormComponent } from './komisja/komisja-form/komisja-form.compon
   declarations: [
     AppComponent,
     NavigationBarComponent,
-    RecenzentListComponent,
-    RecenzentFormComponent,
     KomisjaListComponent,
     KomisjaFormComponent
   ],

@@ -11,6 +11,7 @@
   <thead class="bg-primary text-light">
     <tr>
       <th>Tytuł pracy</th>
+      <th>Promotor</th>
       <th>Imię studenta</th>
       <th>Nazwisko studenta</th>
       <th>Indeks studenta</th>
@@ -23,6 +24,9 @@
     <tr *ngFor="let praca of listaPracDyplomowych">
       <td>
         <strong>{{praca.tytul}}</strong><br/>
+      </td>
+      <td>
+        <strong>{{praca.promotor}}</strong><br/>
       </td>
       <td>
         <strong>{{praca.student.imie}}</strong><br/>

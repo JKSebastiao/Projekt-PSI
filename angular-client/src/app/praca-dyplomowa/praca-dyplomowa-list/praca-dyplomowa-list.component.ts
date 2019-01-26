@@ -11,6 +11,7 @@ export class PracaDyplomowaListComponent implements OnInit {
     {id:2,tytul:"Cos Tam 2",student:{id:1, imie:'Imie 2',nazwisko:'Nazwisko 2',indeks:'223133'},promotor:{pracownik:{imie:"Imie promotora 2",nazwisko:"Nazwisko promotor 2"}}},
     {id:3,tytul:"Cos Tam 3",student:{id:1, imie:'Imie 3',nazwisko:'Nazwisko 3',indeks:'204185'}}
   ];
+
   constructor() { }
 
   ngOnInit() {
