@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./komisja-egzaminacyjna.component.css']
 })
 export class KomisjaEgzaminacyjnaComponent implements OnInit {
-
   komisjiEgzaminacyjine: KomisjaEgzaminacyjna[] = [
     {
       komisja:

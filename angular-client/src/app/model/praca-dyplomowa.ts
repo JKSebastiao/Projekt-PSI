@@ -1,5 +1,6 @@
 class PracaDyplomowa{
     id?: number;
     tytul?: string;
-    student?: Student
+    student?: Student;
+    promotor?: Promotor;
 }

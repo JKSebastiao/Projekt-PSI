@@ -14,6 +14,8 @@
       <th>Imię studenta</th>
       <th>Nazwisko studenta</th>
       <th>Indeks studenta</th>
+      <th>Imię promotora</th>
+      <th>Nazwisko promotora</th>
       <th>Edycja</th>
     </tr>
   </thead>
@@ -30,6 +32,12 @@
       </td>
       <td>
         <strong>{{praca.student.indeks}}</strong><br/>
+      </td>
+      <td>
+        <strong>{{praca.promotor?.pracownik.imie}}</strong><br/>
+      </td>
+      <td>
+        <strong>{{praca.promotor?.pracownik.nazwisko}}</strong><br/>
       </td>
       <td>
         <a [routerLink]="[praca.id,'edit']" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
