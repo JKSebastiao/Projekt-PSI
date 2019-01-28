@@ -19,22 +19,23 @@ public class PracaDyplomowa implements Serializable {
     private long id;
 
     @NotBlank
-    private String titul;
+    private String tytul;
 
-    @OneToOne(mappedBy = "pracaDyplomowa")
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            optional = false)
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "id_promotora", insertable = false, updatable = false)
-    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-    @JsonIdentityReference(alwaysAsId=true)
+    @JoinColumn(name = "promotor_FK", insertable = false, updatable = false)
     private Promotor promotor;
 
     @ManyToOne
-    @JoinColumn(name = "id_recenzenta", insertable = false, updatable = false)
-    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
-    @JsonIdentityReference(alwaysAsId=true)
+    @JoinColumn(name = "recenzent_FK")
     private Recenzent recenzent;
+
+    private boolean hasRecenzent;
 
     public long getId() {
         return id;
@@ -44,12 +45,12 @@ public class PracaDyplomowa implements Serializable {
         this.id = id;
     }
 
-    public String getTitul() {
-        return titul;
+    public String getTytul() {
+        return tytul;
     }
 
-    public void setTitul(String titul) {
-        this.titul = titul;
+    public void setTytul(String tytul) {
+        this.tytul = tytul;
     }
 
     public Student getStudent() {
@@ -71,9 +72,16 @@ public class PracaDyplomowa implements Serializable {
     public Recenzent getRecenzent() {
         return recenzent;
     }
-
     public void setRecenzent(Recenzent recenzent) {
         this.recenzent = recenzent;
+    }
+
+    public boolean isHasRecenzent() {
+        return hasRecenzent = false;
+    }
+
+    public void setHasRecenzent(boolean hasRecenzent) {
+        this.hasRecenzent = hasRecenzent;
     }
 
     @Override

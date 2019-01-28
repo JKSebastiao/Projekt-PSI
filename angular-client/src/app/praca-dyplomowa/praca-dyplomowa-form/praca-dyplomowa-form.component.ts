@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import { PracaDyplomowaService } from '../praca-dyplomowa.service';
 
 @Component({
   selector: 'app-praca-dyplomowa-form',
@@ -9,7 +10,7 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 })
 export class PracaDyplomowaFormComponent implements OnInit {
   form: FormGroup;
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private pracaDyplomowaService: PracaDyplomowaService) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -31,6 +32,27 @@ export class PracaDyplomowaFormComponent implements OnInit {
     return {
       'was-validated': this.isControlValid(control)
     }
+  }
+
+  addPracaDyplomowa(){
+    let praca: PracaDyplomowa = {
+      tytul: this.form.get('tytul').value,
+      student: {
+        imie: this.form.get('student').get('imie').value,
+        nazwisko: this.form.get('student').get('nazwisko').value,
+        nrIndeksu: this.form.get('student').get('indeks').value
+      }
+    }
+    this.pracaDyplomowaService.addPraca(praca).subscribe(
+      response => {
+        alert('Praca Zgłoszona!');
+        console.log(response);
+      },
+      error => {
+        alert('Bląd w momencie zgłaszania pracy!');
+        console.log(error);
+      }
+      );
   }
 
 }

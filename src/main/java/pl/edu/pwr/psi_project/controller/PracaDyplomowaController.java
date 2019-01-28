@@ -10,9 +10,11 @@ import pl.edu.pwr.psi_project.service.PracaDyplomowaService;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
+@CrossOrigin
 @RestController
-@RequestMapping("/pracy_dyplomowych")
+@RequestMapping("/pracy")
 public class PracaDyplomowaController {
 
     @Autowired
@@ -31,9 +33,12 @@ public class PracaDyplomowaController {
     }
 
     @PostMapping
-    public ResponseEntity<PracaDyplomowa> otworzyc(@Valid @RequestBody PracaDyplomowa pracaDyplomowa, HttpServletResponse response){
+    public ResponseEntity<PracaDyplomowa> otworzyc( @RequestBody PracaDyplomowa pracaDyplomowa, HttpServletResponse response){
         PracaDyplomowa pracaDyplomowaZapisana = PracaDyplomowaService.save(pracaDyplomowa);
-        return ResponseEntity.status(HttpStatus.CREATED).body(pracaDyplomowa);
+        if (pracaDyplomowaZapisana != null)
+            return ResponseEntity.status(HttpStatus.CREATED).body(pracaDyplomowaZapisana);
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
     @PutMapping("/{id}")
@@ -46,5 +51,25 @@ public class PracaDyplomowaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id){
         PracaDyplomowaService.deleteById(id);
+    }
+
+    @GetMapping("/propozycja/recenzent")
+    public ResponseEntity<List<PracaDyplomowa>> pracyZRecenzentamiZaproponowanych(){
+        List<PracaDyplomowa> listaPracyZRecenzentamiZaproponowanych =  PracaDyplomowaService
+                .getAll()
+                .stream()
+                .filter(e -> e.getRecenzent() != null && !e.getRecenzent().isPowolany())
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaPracyZRecenzentamiZaproponowanych);
+    }
+
+    @GetMapping("/dopropozycja/recenzent")
+    public ResponseEntity<List<PracaDyplomowa>> pracyDoZaproponowanychRecezenta(){
+        List<PracaDyplomowa> listaPracyZRecenzentamiZaproponowanych =  PracaDyplomowaService
+                .getAll()
+                .stream()
+                .filter(e -> e.getRecenzent() == null)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(listaPracyZRecenzentamiZaproponowanych);
     }
 }

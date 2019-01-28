@@ -3,4 +3,5 @@ class PracaDyplomowa{
     tytul?: string;
     student?: Student;
     promotor?: Promotor;
+    recenzent?: Recenzent;
 }

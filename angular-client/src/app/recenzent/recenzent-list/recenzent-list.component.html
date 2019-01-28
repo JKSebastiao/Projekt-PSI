@@ -7,33 +7,25 @@
 <table class="table table-hover">
   <thead class="bg-primary text-light">
   <tr>
-    <th>Tytuł pracy</th>
-    <th>Promotor</th>
-    <th>Imię studenta</th>
-    <th>Nazwisko studenta</th>
-    <th>Indeks studenta</th>
-    <th>Recenzent</th>
+    <th>Imię</th>
+    <th>Nazwisko</th>
+    <th>Stopień naukowy</th>
+    <th>Opcja</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let praca of listaPracDyplomowych">
+  <tr *ngFor="let recenzent of listaRecenzenci">
     <td>
-      <strong>{{praca.tytul}}</strong><br/>
+      <strong>{{recenzent.pracownik.imie}}</strong><br/>
     </td>
     <td>
-      <strong>{{praca.promotor}}</strong><br/>
+      <strong>{{recenzent.pracownik.nazwisko}}</strong><br/>
     </td>
     <td>
-      <strong>{{praca.student.imie}}</strong><br/>
+      <strong>{{recenzent.pracownik.stopienNaukowy}}</strong><br/>
     </td>
     <td>
-      <strong>{{praca.student.nazwisko}}</strong><br/>
-    </td>
-    <td>
-      <strong>{{praca.student.indeks}}</strong><br/>
-    </td>
-    <td>
-      <a routerLink="/recenzent/zaproponuj" class="btn btn-outline-warning btn-sm mr-2">Zaproponuj</a>
+      <a routerLink="#" class="btn btn-outline-danger btn-sm mr-2">Usuń</a>
     </td>
   </tr>
   </tbody>

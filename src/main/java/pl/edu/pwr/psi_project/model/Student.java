@@ -23,9 +23,6 @@ public class Student implements Serializable {
     @NotBlank
     private String nrIndeksu;
 
-    @OneToOne
-    @JoinColumn(name = "id_pracy_dyplomowej")
-    private PracaDyplomowa pracaDyplomowa;
 
     public Student() {
     }
@@ -66,14 +63,6 @@ public class Student implements Serializable {
 
     public void setNrIndeksu(String nrIndeksu) {
         this.nrIndeksu = nrIndeksu;
-    }
-
-    public PracaDyplomowa getPracaDyplomowa() {
-        return pracaDyplomowa;
-    }
-
-    public void setPracaDyplomowa(PracaDyplomowa pracaDyplomowa) {
-        this.pracaDyplomowa = pracaDyplomowa;
     }
 
     @Override

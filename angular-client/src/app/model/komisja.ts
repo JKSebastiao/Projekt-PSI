@@ -1,6 +1,8 @@
 class KomisjaEgzaminacyjna{
-    komisja?: CzlonekKomisji[];
     budynek?: string;
     sala?: string;
     data?: String;
+    przewodniczacy?: Pracownik;
+    czlonek?: Pracownik;
+    sekretarz?: Pracownik;
 }

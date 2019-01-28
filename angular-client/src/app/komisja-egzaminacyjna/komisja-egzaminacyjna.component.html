@@ -18,25 +18,30 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let komijaEgzaminacyjny of komisjiEgzaminacyjine">
+    <tr *ngFor="let komijaEgzaminacyjna of listaKomisjaEgzaminacyjnych">
       <td>
-        <div *ngFor="let czlonek of komijaEgzaminacyjny.komisja ">
-            <strong>{{czlonek.pracownik.stopien}} {{czlonek.pracownik.imie}} {{czlonek.pracownik.nazwisko}} <small>{{czlonek.role}}</small></strong>
+        <small>{{komijaEgzaminacyjna.przewodniczacy.stopienNaukowy}}</small> {{komijaEgzaminacyjna.przewodniczacy.imie}} {{komijaEgzaminacyjna.przewodniczacy.nazwisko}} <span class="badge badge-success">Przewodniczacy</span><br>
+        <div *ngIf="equals(komijaEgzaminacyjna.czlonek, komijaEgzaminacyjna.sekretarz)">
+            <small>{{komijaEgzaminacyjna.czlonek.stopienNaukowy}}</small> {{komijaEgzaminacyjna.czlonek.imie}} {{komijaEgzaminacyjna.czlonek.nazwisko}} <span class="badge badge-danger">Grugi członek i Sekretarz</span><br>
         </div>
-
+        <div *ngIf="!equals(komijaEgzaminacyjna.czlonek, komijaEgzaminacyjna.sekretarz)">
+            <small>{{komijaEgzaminacyjna.czlonek.stopienNaukowy}}</small> {{komijaEgzaminacyjna.czlonek.imie}} {{komijaEgzaminacyjna.czlonek.nazwisko}} <span class="badge badge-danger">Grugi członek</span><br>
+        </div>
+        <div *ngIf="!equals(komijaEgzaminacyjna.czlonek, komijaEgzaminacyjna.sekretarz)">
+            <small>{{komijaEgzaminacyjna.sekretarz.stopienNaukowy}}</small> {{komijaEgzaminacyjna.sekretarz.imie}} {{komijaEgzaminacyjna.sekretarz.nazwisko}} <span class="badge badge-secondary">Sekretarz</span><br>
+        </div>
+        <td>
+        <strong>{{komijaEgzaminacyjna.budynek}}</strong><br/>
       </td>
       <td>
-        <strong>{{komijaEgzaminacyjny.budynek}}</strong><br/>
+        <strong>{{komijaEgzaminacyjna.sala}}</strong><br/>
       </td>
       <td>
-        <strong>{{komijaEgzaminacyjny.sala}}</strong><br/>
+        <strong>{{komijaEgzaminacyjna.data}}</strong><br/>
       </td>
       <td>
-        <strong>{{komijaEgzaminacyjny.data}}</strong><br/>
-      </td>
-      <td>
-        <a [routerLink]="[komijaEgzaminacyjny.id,'edit']" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
-        <button (click)="deleteKomisji(komijaEgzaminacyjny)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
+        <a [routerLink]="[komijaEgzaminacyjna.id,'edit']" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
+        <button (click)="deleteKomisji(komijaEgzaminacyjna)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
       </td>
     </tr>
   </tbody>

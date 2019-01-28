@@ -2,6 +2,6 @@ class Student{
     id?: number;
     imie?:string;
     nazwisko?: string;
-    indeks?: string;
+    nrIndeksu?: string;
     pracaDyplowowa?: PracaDyplomowa;
 }

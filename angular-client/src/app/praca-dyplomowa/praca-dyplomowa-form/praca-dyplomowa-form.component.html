@@ -1,14 +1,9 @@
-<div class="row mb-4">
-  <div class="col-md">
-    <br>
-    <h1 class="h2 border-left pl-2"> Zgłoszenie pracy dyplomowej </h1>
-  </div>
-</div>
 
-<form [formGroup]="form" class="needs-validation" novalidate>
-  <div class="card">
+<form [formGroup]="form" class="needs-validation" novalidate (ngSubmit) = "addPracaDyplomowa()">
+  <div class="card mt-2">
     <div class="card-header">
-      Informacje o pracy dyplomowej
+      
+      <h1 class="h2"> Zgłoszenie pracy dyplomowej</h1>
     </div>
     <div class="card-body">
       <div class="form-row">
@@ -18,25 +13,15 @@
           <div class="invalid-feedback"> Tytuł jest wymagany!</div>
         </div>
         <div class="col-md-12" formGroupName ="student" >
-            <div class="form-group" [ngClass]="aplyCSSError('student.imie')">
-              <label for="imie">Imię studenta:</label>
-              <input type="text" class="form-control" id="imie" formControlName="imie" required>
-              <div class="invalid-feedback">Imię studenta jest wymagane!</div>
-            </div>
-            <div class="form-group" [ngClass]="aplyCSSError('student.nazwisko')">
-              <label for="nazwisko">Nazwisko studenta:</label>
-              <input type="text" class="form-control" id="nazwisko" formControlName="nazwisko" required>
-              <div class="invalid-feedback">Nazwisko studenta jest wymagane!</div>
-            </div>
             <div class="form-group" [ngClass]="aplyCSSError('student.indeks')">
               <label for="indeks">Nr indeksu studenta:</label>
-              <input type="text" class="form-control" id="Indeks" formControlName="indeks" required>
+              <input type="number" class="form-control" id="Indeks" formControlName="indeks" required>
               <div class="invalid-feedback">Nr indeksu studenta jest wymagany!</div>
             </div>
         </div>
       </div>
+      <button type="submit" class="btn btn-success btn-lg float-right">+ Dodaj</button>
     </div>
   </div>
-  <button type="submit" class="btn btn-success btn-lg float-right mt-4">+ Dodaj</button>
 </form>
 

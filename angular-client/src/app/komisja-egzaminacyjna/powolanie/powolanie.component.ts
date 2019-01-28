@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PowolanieService } from './powolanie.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { KomisjaEgzaminacyjnaService } from '../komisja-egzaminacyjna.service';
+import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-powolanie',
@@ -11,48 +11,47 @@ export class PowolanieComponent implements OnInit {
 
   form: FormGroup
   pracownici: Pracownik[];
-  powolanaKomisji: CzlonekKomisji[]=[];
-
-  constructor(private powolanieService: PowolanieService, private formBuilder: FormBuilder) { }
+  pracowniciForPrzewodniczacy: Pracownik[];
+  pracowniciForCzlonek: Pracownik[];
+  noSelected = null;
+  constructor(private komisjaEgzaminacyjnaService: KomisjaEgzaminacyjnaService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
     budynek: [null,Validators.required],
     sala: [null, Validators.required],
-    data: [null,Validators.required]
+    data: [null,Validators.required],
+    przewodniczacy:[null, Validators.required],
+    czlonek: [null, Validators.nullValidator],
+    sekretarz:[null]
     });
-    this.powolanieService.getAllPracownik().subscribe(e => {
-      this.pracownici = e;
-      this.pracownici.sort((a,b)=>this.pracownikComparator(a,b));
+    this.komisjaEgzaminacyjnaService.getAllPracownik().subscribe(e => {
+      this.pracownici = e.sort((a,b)=>this.pracownikComparator(a,b));
+      this.pracowniciForPrzewodniczacy = this.pracownici;
+      this.pracowniciForCzlonek = this.pracownici;
     },error=> console.log("Error for taking pracowniki"))
     
   }
 
-  private dodajPrzewodniczacy(pracownik: Pracownik){
-    if(this.powolanaKomisji.length<3){
-      this.powolanaKomisji.push({pracownik:pracownik,role:"Przewodniczacy"});
-      this.pracownici = this.pracownici.filter(e => e != pracownik);
-    }
-    console.log("Przewodniczący "+pracownik.nazwisko+" dodany!")
+  private onPrzewodniczacyChanged(){
+    this.pracowniciForCzlonek =  this.pracownici.filter(e => e != this.form.get('przewodniczacy').value);
   }
-  private dodajCzlonek(pracownik: Pracownik){
-    if(this.powolanaKomisji.length<3){
-      this.powolanaKomisji.push({pracownik:pracownik,role:"Członek"});
-      this.pracownici = this.pracownici.filter(e => e != pracownik);
-    }
-    console.log("Członek "+pracownik.nazwisko+" dodany!")
+  private onCzlonekChanged(){
+    this.pracowniciForPrzewodniczacy = this.pracownici.filter(e => e != this.form.get('czlonek').value);
+    this.pracowniciForPrzewodniczacy = this.pracowniciForPrzewodniczacy.filter(e => e != this.form.get('sekretarz').value);
   }
-  private dodajSekretarz(pracownik: Pracownik){
-    if(this.powolanaKomisji.length<3){
-      this.powolanaKomisji.push({pracownik:pracownik,role:"Sekretarz"});
-      this.pracownici = this.pracownici.filter(e => e != pracownik);
-    }
-    console.log("Sekretarz "+pracownik.nazwisko+" dodany!")
+  private onSekretarzChanged(){
+    this.onCzlonekChanged();
   }
 
   private isControlValid(control){
     return !this.form.get(control).valid && this.form.get(control).touched;
+  }
 
+  private aplyCSSErrorToSelect(control){
+    return {
+      'was-validated': !this.form.get(control).invalid && this.form.get(control).touched
+    }
   }
 
   private aplyCSSError(control){
@@ -61,25 +60,27 @@ export class PowolanieComponent implements OnInit {
     }
   }
 
-  private hasPrzewodniczacy():Boolean{
-    return this.powolanaKomisji.filter(e => e.role =="Przewodniczacy").length != 0;
-  }
-  private hasCzlonek():Boolean{
-    return this.powolanaKomisji.filter(e => e.role =="Członek").length != 0;
-  }
-  private hasSekretarz():Boolean{
-    return this.powolanaKomisji.filter(e => e.role =="Sekretarz").length != 0;
-  }
-
-  private usunCzlonek(czlonek: CzlonekKomisji){
-    const pracownik = czlonek.pracownik;
-    this.powolanaKomisji = this.powolanaKomisji.filter(e => e != czlonek);
-    this.pracownici.unshift(pracownik);
-    //this.pracownici.sort((a,b)=> this.pracownikComparator(a,b));
-  }
-
   private pracownikComparator(a:Pracownik,b:Pracownik):number{
     return a.imie > b.imie? 1 : a.imie < b.imie? -1:a.nazwisko > b.nazwisko? 1: a.nazwisko < b.nazwisko? -1:0;
   }
 
+  private createKomisja(){
+    let komisja : KomisjaEgzaminacyjna = {
+      budynek: this.form.get('budynek').value,
+      sala: this.form.get('sala').value,
+      data: this.form.get('data').value,
+      przewodniczacy: this.form.get('przewodniczacy').value,
+      czlonek: this.form.get('czlonek').value,
+      sekretarz: this.form.get('sekretarz').value
+
+   };
+   this.komisjaEgzaminacyjnaService.createKomisja(komisja).subscribe(response =>{
+     console.log(response);
+   }, error => console.log(error) );
+    console.log(this.form.get('czlonek').value);
+  }
+
+  changed(){
+    console.log(this.form.get('przewodniczacy').value);
+  }
 }

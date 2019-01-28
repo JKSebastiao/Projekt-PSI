@@ -11,7 +11,7 @@ import pl.edu.pwr.psi_project.service.KomisjaService;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/komisji")
 public class KomisjaController {

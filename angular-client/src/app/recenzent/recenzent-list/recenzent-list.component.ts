@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { RecenzentService } from '../recenzent.service';
 
 @Component({
   selector: 'app-recenzent-list',
@@ -6,14 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recenzent-list.component.css']
 })
 export class RecenzentListComponent implements OnInit {
-  private listaPracDyplomowych: PracaDyplomowa[] = [
-    {id:1,tytul:"Cos Tam 1",student:{id:1, imie:'Imie 1',nazwisko:'Nazwisko 1',indeks:'223183'}},
-    {id:2,tytul:"Cos Tam 2",student:{id:1, imie:'Imie 2',nazwisko:'Nazwisko 2',indeks:'223133'}},
-    {id:3,tytul:"Cos Tam 3",student:{id:1, imie:'Imie 3',nazwisko:'Nazwisko 3',indeks:'204185'}}
-  ];
-  constructor() { }
+  form: FormGroup;
+  listaRecenzenci: Pracownik[] = [];
+  constructor(private recenzentService: RecenzentService, 
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.recenzentService.getAllRecenzenci().subscribe(response =>{
+      this.listaRecenzenci = response;
+      console.log(response);
+    });
   }
 
 }

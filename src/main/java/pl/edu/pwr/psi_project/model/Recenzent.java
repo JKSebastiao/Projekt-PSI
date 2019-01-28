@@ -1,9 +1,15 @@
 package pl.edu.pwr.psi_project.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,11 +22,18 @@ public class Recenzent implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToOne(cascade = CascadeType.ALL,optional = false)
+    private boolean powolany = false;
+
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            optional = false)
     private Pracownik pracownik;
 
+    @NotEmpty
     @OneToMany(mappedBy = "recenzent")
-    private Set<PracaDyplomowa> pracyDyplomowych;
+    @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+    @JsonIdentityReference(alwaysAsId=true)
+    private List<PracaDyplomowa> listaPracyDyplomowych;
 
     public long getId() {
         return id;
@@ -28,6 +41,14 @@ public class Recenzent implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public boolean isPowolany() {
+        return powolany;
+    }
+
+    public void setPowolany(boolean powolany) {
+        this.powolany = powolany;
     }
 
     public Pracownik getPracownik() {
@@ -38,12 +59,12 @@ public class Recenzent implements Serializable {
         this.pracownik = pracownik;
     }
 
-    public Set<PracaDyplomowa> getPracyDyplomowych() {
-        return pracyDyplomowych;
+    public List<PracaDyplomowa> getListaPracyDyplomowych() {
+        return listaPracyDyplomowych;
     }
 
-    public void setPracyDyplomowych(Set<PracaDyplomowa> pracyDyplomowych) {
-        this.pracyDyplomowych = pracyDyplomowych;
+    public void setListaPracyDyplomowych(List<PracaDyplomowa> listaPracyDyplomowych) {
+        this.listaPracyDyplomowych = listaPracyDyplomowych;
     }
 
     @Override
