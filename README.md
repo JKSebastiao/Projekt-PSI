@@ -18,8 +18,20 @@ mvn clean package dockerfile:build
 ```
 docker-compose up
 ```
+## To deploy a stack on Kubernetes
+```
+docker stack deploy --orchestrator kubernetes --compose-file docker-compose.yml Dyplomowanie
+```
+
+## To remove stack Dyplomowanie
+
+```
+docker stack rm --orchestrator kubernetes Dyplomowanie
+```
 
 ## Access test
 
 - http://localhost:8080/db/pool/name
 - http://localhost:8080/db/pool/size
+
+

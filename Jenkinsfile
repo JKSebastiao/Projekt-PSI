@@ -8,7 +8,8 @@ pipeline {
         }
 	stage('Deploy') {
             steps {
-                sh 'docker-compose up'
+		sh 'docker stack deploy --orchestrator kubernetes --compose-file docker-compose.yml Dyplomowanie'
+		sh 'kubectl get service'
             }
         }
     }
