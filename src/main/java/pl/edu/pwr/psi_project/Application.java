@@ -17,11 +17,11 @@ public class Application {
         SpringApplication.run(Application.class, args);
     }
 
-    @Bean
+   /* @Bean
     public CommandLineRunner demo (final DBInit dbInit){
         return (args) ->{
             dbInit.addPracowniki();
             dbInit.addStudent();
         };
-    }
+    }*/
 }

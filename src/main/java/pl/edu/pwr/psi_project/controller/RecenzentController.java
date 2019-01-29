@@ -15,7 +15,7 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/recenzenci")
+@RequestMapping(" ")
 public class RecenzentController {
 
     @Autowired

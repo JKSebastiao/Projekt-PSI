@@ -35,6 +35,8 @@ public class Recenzent implements Serializable {
     @JsonIdentityReference(alwaysAsId=true)
     private List<PracaDyplomowa> listaPracyDyplomowych;
 
+
+
     public long getId() {
         return id;
     }
