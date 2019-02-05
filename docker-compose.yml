@@ -22,7 +22,7 @@ services:
       ports:
          - "8080:8080"
       depends_on:
-         - docker-postgres
+         - docker-DataBase
 
    docker-postgres:
       image: postgres:10.4

@@ -76,7 +76,7 @@ export class PracaDyplomowaFormComponent implements OnInit {
           this.showSuccessMessage('Praca Zgłoszona!')
         },
         error => {
-          alert('Bląd w momencie zgłaszania pracy!');
+          this.showSuccessMessage('Bląd w momencie zgłaszania pracy!')
         });
     }
   }

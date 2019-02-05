@@ -14,7 +14,7 @@
       <th>Studenta</th>
       <th>Kiekunek</th>
       <th>Stopień</th>
-      <th>Promotor</th>
+      <!--th>Promotor</th-->
       <th>Opcja</th>
     </tr>
   </thead>
@@ -35,10 +35,10 @@
       <td>
         {{praca.stopien}} stopień<br/>
       </td>
-      <td>
+      <!---td>
         <strong>Imię:</strong> {{praca.promotor?.imie}}<br/>
         <strong>Nazwisko:</strong> {{praca.promotor?.nazwisko}}<br/>
-      </td>
+      </td-->
       <td>
         <a [routerLink]="['/praca/zgloszenie/',praca.id]" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
         <button (click)="deletePraca(praca)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
