@@ -1,10 +1,13 @@
 package pl.edu.pwr.psi_project.model.enumerations;
 
 public enum StanowiskoPracownika {
-    PRACOWNIK_NAUKOWO_DYDAKTYCZNY("Pracownik naukowo dydaktyczny"),
-    PRACOWNIK_DYDAKTYCZNY("Pracownik dydaktyczny"),
-    PRACOWNIK_NAUKOWO("Pracownik naukowo"),
-    PELNOMOCNIK_DZIEKANA("Pełnomocnik dziekana");
+    ASYSTENT("Asystent"),
+    ADMINISTRATOR("Administrator"),
+    PROFESOR("Profesor"),
+    DOCENT("Docent"),
+    WYKLADOWCA("Wykładowce"),
+    STARSZY_WYKLADOWCE("Starszy Wykładowce"),
+    DOKTORANT("Doktorant");
 
     private String opis;
 

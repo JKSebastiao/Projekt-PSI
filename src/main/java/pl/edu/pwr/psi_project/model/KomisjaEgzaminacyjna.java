@@ -1,9 +1,16 @@
 package pl.edu.pwr.psi_project.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,18 +23,16 @@ public class KomisjaEgzaminacyjna  implements Serializable {
     private long id;
     private String sala;
     private String budynek;
-    private Date date;
-    @ManyToOne
-    @JoinColumn(name = "przewodniczacy_id", nullable = false)
-    private Pracownik przewodniczacy;
 
-    @ManyToOne
-    @JoinColumn(name = "czlonek_id", nullable = false)
-        private Pracownik czlonek;
+    @NotNull
+    @DateTimeFormat(pattern = "dd.MM.yyyy")
+    private LocalDate date;
 
-    @ManyToOne
-    @JoinColumn(name = "sekretarz_id")
-    private Pracownik sekretarz;
+    @NotNull
+    private LocalTime time;
+
+    @OneToMany(mappedBy = "komisjaEgzaminacyjna")
+    private List<KomisjaPracownik> czlonki;
 
     public long getId() {
         return id;
@@ -53,36 +58,28 @@ public class KomisjaEgzaminacyjna  implements Serializable {
         this.budynek = budynek;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Pracownik getPrzewodniczacy() {
-        return przewodniczacy;
+    public LocalTime getTime() {
+        return time;
     }
 
-    public void setPrzewodniczacy(Pracownik przewodniczacy) {
-        this.przewodniczacy = przewodniczacy;
+    public void setTime(LocalTime time) {
+        this.time = time;
     }
 
-    public Pracownik getCzlonek() {
-        return czlonek;
+    public List<KomisjaPracownik> getCzlonki() {
+        return czlonki;
     }
 
-    public void setCzlonek(Pracownik czlonek) {
-        this.czlonek = czlonek;
-    }
-
-    public Pracownik getSekretarz() {
-        return sekretarz != null ? sekretarz: czlonek;
-    }
-
-    public void setSekretarz(Pracownik sekretarz) {
-        this.sekretarz = sekretarz;
+    public void setCzlonki(List<KomisjaPracownik> czlonki) {
+        this.czlonki = czlonki;
     }
 
     @Override

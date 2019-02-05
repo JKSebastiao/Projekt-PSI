@@ -5,13 +5,17 @@ import { RecenzentListComponent } from './recenzent-list/recenzent-list.componen
 import { RecenzentFormComponent } from './recenzent-form/recenzent-form.component';
 import { RecenzentRoutingModule } from './recenzent-routing.module';
 import { RecenzentPropozycjaComponent } from './recenzent-propozycja/recenzent-propozycja.component';
+import { ToastModule } from 'primeng/components/toast/toast';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @NgModule({
   declarations: [RecenzentListComponent, RecenzentFormComponent, RecenzentPropozycjaComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RecenzentRoutingModule
-  ]
+    RecenzentRoutingModule,
+    ToastModule
+  ],
+  providers: [MessageService]
 })
 export class RecenzentModule { }

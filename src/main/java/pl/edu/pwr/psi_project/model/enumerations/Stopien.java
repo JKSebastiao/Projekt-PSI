@@ -4,5 +4,4 @@ public enum Stopien {
     I,
     II,
     III
-
 }

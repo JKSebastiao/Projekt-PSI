@@ -1,5 +1,6 @@
 package pl.edu.pwr.psi_project.controller;
 
+import org.hibernate.loader.plan.spi.Return;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,9 @@ public class KomisjaController {
     @PostMapping
     public ResponseEntity<KomisjaEgzaminacyjna> otworzyc(@Valid @RequestBody KomisjaEgzaminacyjna komisjaEgzaminacyjna, HttpServletResponse response){
         KomisjaEgzaminacyjna komisjaEgzaminacyjnaOld = komisjaService.save(komisjaEgzaminacyjna);
-        return ResponseEntity.status(HttpStatus.CREATED).body(komisjaEgzaminacyjna);
+        if(komisjaEgzaminacyjnaOld == null)
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(komisjaEgzaminacyjnaOld);
+        return ResponseEntity.status(HttpStatus.CREATED).body(komisjaEgzaminacyjnaOld);
     }
 
     @PutMapping("/{id}")

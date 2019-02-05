@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-client';
+  title = 'Dyplomowanie';
+
+  //loged = false;
+
+  login(){
+    //this.loged = true;
+  }
 }

@@ -20,15 +20,15 @@
   <tbody>
     <tr *ngFor="let komijaEgzaminacyjna of listaKomisjaEgzaminacyjnych">
       <td>
-        <small>{{komijaEgzaminacyjna.przewodniczacy.stopienNaukowy}}</small> {{komijaEgzaminacyjna.przewodniczacy.imie}} {{komijaEgzaminacyjna.przewodniczacy.nazwisko}} <span class="badge badge-success">Przewodniczacy</span><br>
+        <small>{{komijaEgzaminacyjna.przewodniczacy.tytul}}</small> {{komijaEgzaminacyjna.przewodniczacy.imie}} {{komijaEgzaminacyjna.przewodniczacy.nazwisko}} <span class="badge badge-success">Przewodniczacy</span><br>
         <div *ngIf="equals(komijaEgzaminacyjna.czlonek, komijaEgzaminacyjna.sekretarz)">
-            <small>{{komijaEgzaminacyjna.czlonek.stopienNaukowy}}</small> {{komijaEgzaminacyjna.czlonek.imie}} {{komijaEgzaminacyjna.czlonek.nazwisko}} <span class="badge badge-danger">Grugi członek i Sekretarz</span><br>
+            <small>{{komijaEgzaminacyjna.czlonek.tytul}}</small> {{komijaEgzaminacyjna.czlonek.imie}} {{komijaEgzaminacyjna.czlonek.nazwisko}} <span class="badge badge-danger">Grugi członek i Sekretarz</span><br>
         </div>
         <div *ngIf="!equals(komijaEgzaminacyjna.czlonek, komijaEgzaminacyjna.sekretarz)">
-            <small>{{komijaEgzaminacyjna.czlonek.stopienNaukowy}}</small> {{komijaEgzaminacyjna.czlonek.imie}} {{komijaEgzaminacyjna.czlonek.nazwisko}} <span class="badge badge-danger">Grugi członek</span><br>
+            <small>{{komijaEgzaminacyjna.czlonek.tytul}}</small> {{komijaEgzaminacyjna.czlonek.imie}} {{komijaEgzaminacyjna.czlonek.nazwisko}} <span class="badge badge-danger">Grugi członek</span><br>
         </div>
         <div *ngIf="!equals(komijaEgzaminacyjna.czlonek, komijaEgzaminacyjna.sekretarz)">
-            <small>{{komijaEgzaminacyjna.sekretarz.stopienNaukowy}}</small> {{komijaEgzaminacyjna.sekretarz.imie}} {{komijaEgzaminacyjna.sekretarz.nazwisko}} <span class="badge badge-secondary">Sekretarz</span><br>
+            <small>{{komijaEgzaminacyjna.sekretarz.tytul}}</small> {{komijaEgzaminacyjna.sekretarz.imie}} {{komijaEgzaminacyjna.sekretarz.nazwisko}} <span class="badge badge-secondary">Sekretarz</span><br>
         </div>
         <td>
         <strong>{{komijaEgzaminacyjna.budynek}}</strong><br/>

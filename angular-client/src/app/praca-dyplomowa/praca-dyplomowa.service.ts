@@ -16,4 +16,12 @@ export class PracaDyplomowaService {
   addPraca(praca: PracaDyplomowa): Observable<PracaDyplomowa>{
     return this.http.post<PracaDyplomowa>(this.url+"pracy",praca);
   }
+
+  updatePraca(id:number, praca: PracaDyplomowa): Observable<PracaDyplomowa>{
+    return this.http.put<PracaDyplomowa>(this.url+"pracy/"+id,praca);
+  }
+
+  getPracaById(id: number):Observable<PracaDyplomowa>{
+    return this.http.get<PracaDyplomowa>(this.url+"pracy/"+id);
+  }
 }

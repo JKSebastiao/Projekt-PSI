@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import pl.edu.pwr.psi_project.model.Pracownik;
 import pl.edu.pwr.psi_project.model.Student;
 import pl.edu.pwr.psi_project.model.enumerations.StanowiskoPracownika;
-import pl.edu.pwr.psi_project.model.enumerations.StopienNaukowy;
+import pl.edu.pwr.psi_project.model.enumerations.Tytul;
 import pl.edu.pwr.psi_project.service.PracownikService;
 import pl.edu.pwr.psi_project.service.StudentService;
 
@@ -20,9 +20,12 @@ public class DBInit {
 
     public void addPracowniki(){
         if(pracownikService.getAll().isEmpty()) {
-            pracownikService.save(new Pracownik("Imie Pracownika 1", "Nazwisko Pracownika 1", StopienNaukowy.DOKTOR_INZINIER, StanowiskoPracownika.PRACOWNIK_NAUKOWO_DYDAKTYCZNY));
-            pracownikService.save(new Pracownik("Imie Pracownika 2", "Nazwisko Pracownika 2", StopienNaukowy.MAGISTER_INZINIER, StanowiskoPracownika.PELNOMOCNIK_DZIEKANA));
-            pracownikService.save(new Pracownik("Imie Pracownika 3", "Nazwisko Pracownika 3", StopienNaukowy.DOKTOR, StanowiskoPracownika.PRACOWNIK_DYDAKTYCZNY));
+            pracownikService.save(new Pracownik("Imie Pracownika 1", "Nazwisko Pracownika 1", Tytul.DR_HAB, StanowiskoPracownika.DOCENT));
+            pracownikService.save(new Pracownik("Imie Pracownika 2", "Nazwisko Pracownika 2", Tytul.MGR_INZ, StanowiskoPracownika.DOKTORANT));
+            pracownikService.save(new Pracownik("Imie Pracownika 3", "Nazwisko Pracownika 3", Tytul.DR, StanowiskoPracownika.WYKLADOWCA));
+            pracownikService.save(new Pracownik("Imie Pracownika 4", "Nazwisko Pracownika 4", Tytul.INZ, StanowiskoPracownika.ASYSTENT));
+            pracownikService.save(new Pracownik("Imie Pracownika 5", "Nazwisko Pracownika 5", Tytul.MGR_INZ, StanowiskoPracownika.DOCENT));
+            pracownikService.save(new Pracownik("Imie Pracownika 6", "Nazwisko Pracownika 6", Tytul.PROF_DR_HAB, StanowiskoPracownika.WYKLADOWCA));
         }
     }
 

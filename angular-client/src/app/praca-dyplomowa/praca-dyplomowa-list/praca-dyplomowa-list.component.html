@@ -11,40 +11,36 @@
   <thead class="bg-primary text-light">
     <tr>
       <th>Tytuł pracy</th>
+      <th>Studenta</th>
+      <th>Kiekunek</th>
+      <th>Stopień</th>
       <th>Promotor</th>
-      <th>Imię studenta</th>
-      <th>Nazwisko studenta</th>
-      <th>Indeks studenta</th>
-      <th>Imię promotora</th>
-      <th>Nazwisko promotora</th>
-      <th>Edycja</th>
+      <th>Opcja</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let praca of listaPracDyplomowych">
       <td>
-        <strong>{{praca.tytul}}</strong><br/>
+        <strong>PL:</strong> {{praca.tytulPoPolsku}}<br/>
+        <strong>EN:</strong> {{praca.tytulPoAngielsku}}
       </td>
       <td>
-        <strong>{{praca.promotor}}</strong><br/>
+        <strong>Imię:</strong> {{praca.student.imie}}<br/>
+        <strong>Nazwisko:</strong> {{praca.student.nazwisko}}<br/>
+        <strong>Indeks:</strong> {{praca.student.nrIndeksu}}
       </td>
       <td>
-        <strong>{{praca.student.imie}}</strong><br/>
+        {{praca.kierunek}}<br/>
       </td>
       <td>
-        <strong>{{praca.student.nazwisko}}</strong><br/>
+        {{praca.stopien}} stopień<br/>
       </td>
       <td>
-        <strong>{{praca.student.nrIndeksu}}</strong><br/>
+        <strong>Imię:</strong> {{praca.promotor?.imie}}<br/>
+        <strong>Nazwisko:</strong> {{praca.promotor?.nazwisko}}<br/>
       </td>
       <td>
-        <strong>{{praca.promotor?.pracownik.imie}}</strong><br/>
-      </td>
-      <td>
-        <strong>{{praca.promotor?.pracownik.nazwisko}}</strong><br/>
-      </td>
-      <td>
-        <a [routerLink]="[praca.id,'edit']" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
+        <a [routerLink]="['/praca/zgloszenie/',praca.id]" class="btn btn-outline-warning btn-sm mr-2">Korekta</a>
         <button (click)="deletePraca(praca)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
       </td>
     </tr>

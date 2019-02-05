@@ -1,9 +1,8 @@
 package pl.edu.pwr.psi_project.model;
 
 import pl.edu.pwr.psi_project.model.enumerations.StanowiskoPracownika;
-import pl.edu.pwr.psi_project.model.enumerations.StopienNaukowy;
+import pl.edu.pwr.psi_project.model.enumerations.Tytul;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -26,7 +25,7 @@ public class Pracownik  implements Serializable {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    private StopienNaukowy stopienNaukowy;
+    private Tytul tytul;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -35,10 +34,10 @@ public class Pracownik  implements Serializable {
     public Pracownik() {
     }
 
-    public Pracownik(@NotBlank String imie, @NotBlank String nazwisko, @NotNull StopienNaukowy stopienNaukowy, @NotNull StanowiskoPracownika stanowiskoPracownika) {
+    public Pracownik(@NotBlank String imie, @NotBlank String nazwisko, @NotNull Tytul tytul, @NotNull StanowiskoPracownika stanowiskoPracownika) {
         this.imie = imie;
         this.nazwisko = nazwisko;
-        this.stopienNaukowy = stopienNaukowy;
+        this.tytul = tytul;
         this.stanowiskoPracownika = stanowiskoPracownika;
     }
 
@@ -66,12 +65,12 @@ public class Pracownik  implements Serializable {
         this.nazwisko = nazwisko;
     }
 
-    public StopienNaukowy getStopienNaukowy() {
-        return stopienNaukowy;
+    public Tytul getTytul() {
+        return tytul;
     }
 
-    public void setStopienNaukowy(StopienNaukowy stopienNaukowy) {
-        this.stopienNaukowy = stopienNaukowy;
+    public void setTytul(Tytul tytul) {
+        this.tytul = tytul;
     }
 
     public StanowiskoPracownika getStanowiskoPracownika() {

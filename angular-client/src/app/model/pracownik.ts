@@ -2,6 +2,6 @@ class Pracownik{
     id?: number;
     imie?: string;
     nazwisko?: string;
-    stopienNaukowy?: string;
+    tytul?: string;
     stanowiskoPracownika?: string;
 }

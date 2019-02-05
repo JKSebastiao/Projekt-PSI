@@ -36,15 +36,7 @@ export class RecenzentFormComponent implements OnInit {
   }
 
   private addPropozycja(){
-    const recenzent: Recenzent = {
-      id: this.pracaDyplomowa.recenzent.id,
-      listaPracyDyplomowych:this.pracaDyplomowa.recenzent.listaPracyDyplomowych,
-      pracownik:this.form.get('recenzent').value
-    };
-    this.recenzentService.addRecenzent(recenzent).subscribe(
-      response => console.log(response), 
-      error => console.log(error)
-      );
+    
   }
 
   private editMethod(){
@@ -53,18 +45,7 @@ export class RecenzentFormComponent implements OnInit {
   }
 
   private akceptuj(){
-    let recenzentPowalany: Recenzent = {
-      id: this.pracaDyplomowa.recenzent.id,
-      pracownik: this.pracaDyplomowa.recenzent.pracownik,
-      listaPracyDyplomowych:[this.pracaDyplomowa],
-      powolany: true,
-    };
-    console.log(recenzentPowalany);
-
-    this.recenzentService.addRecenzent(recenzentPowalany).subscribe(
-      response => console.log(response), 
-      error => console.log(error)
-      );
+  
   }
 
 }

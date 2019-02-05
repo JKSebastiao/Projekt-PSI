@@ -5,7 +5,8 @@ import { PracaDyplomowaFormComponent } from './praca-dyplomowa-form/praca-dyplom
 
 const routes: Routes = [
     {path: '',component: PracaDyplomowaListComponent},
-    {path: 'zgloszenie', component:PracaDyplomowaFormComponent}
+    {path: 'zgloszenie', component:PracaDyplomowaFormComponent},
+    {path: 'zgloszenie/:id', component:PracaDyplomowaFormComponent}
 ];
 
 @NgModule({

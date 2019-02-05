@@ -41,6 +41,15 @@ public class PracaDyplomowaController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
+    @PostMapping("/propozycja/recenzent")
+    public ResponseEntity<PracaDyplomowa> zaproponujRecenzenta( @RequestBody PracaDyplomowa pracaDyplomowa, HttpServletResponse response){
+        PracaDyplomowa pracaDyplomowaZapisana = PracaDyplomowaService.zaproponujRecenzenta(pracaDyplomowa);
+        if (pracaDyplomowaZapisana != null)
+            return ResponseEntity.status(HttpStatus.CREATED).body(pracaDyplomowaZapisana);
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<PracaDyplomowa> update(@PathVariable long id, @Valid @RequestBody PracaDyplomowa PracaDyplomowa){
         PracaDyplomowa pracaDyplomowaAktualna = PracaDyplomowaService.update(id,PracaDyplomowa);
@@ -55,21 +64,13 @@ public class PracaDyplomowaController {
 
     @GetMapping("/propozycja/recenzent")
     public ResponseEntity<List<PracaDyplomowa>> pracyZRecenzentamiZaproponowanych(){
-        List<PracaDyplomowa> listaPracyZRecenzentamiZaproponowanych =  PracaDyplomowaService
-                .getAll()
-                .stream()
-                .filter(e -> e.getRecenzent() != null && !e.getRecenzent().isPowolany())
-                .collect(Collectors.toList());
+        List<PracaDyplomowa> listaPracyZRecenzentamiZaproponowanych =  PracaDyplomowaService.getAll();
         return ResponseEntity.ok(listaPracyZRecenzentamiZaproponowanych);
     }
 
     @GetMapping("/dopropozycja/recenzent")
     public ResponseEntity<List<PracaDyplomowa>> pracyDoZaproponowanychRecezenta(){
-        List<PracaDyplomowa> listaPracyZRecenzentamiZaproponowanych =  PracaDyplomowaService
-                .getAll()
-                .stream()
-                .filter(e -> e.getRecenzent() == null)
-                .collect(Collectors.toList());
+        List<PracaDyplomowa> listaPracyZRecenzentamiZaproponowanych =  PracaDyplomowaService.getAllDoRecenzji();
         return ResponseEntity.ok(listaPracyZRecenzentamiZaproponowanych);
     }
 }

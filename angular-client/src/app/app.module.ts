@@ -5,14 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AccordionModule } from 'primeng/primeng';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationBarComponent
+    NavigationBarComponent,
+    LoginComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserAnimationsModule,
+    AccordionModule,
     HttpClientModule,
     AppRoutingModule
   ],

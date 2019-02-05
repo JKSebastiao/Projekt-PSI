@@ -23,7 +23,7 @@
                 <tbody>
                 <tr *ngFor="let pracaDyplomowa of listaPracyZRecenzentamiZaproponowanych">
                   <td>
-                    <strong>{{pracaDyplomowa.tytul}}</strong><br/>
+                    <strong>{{pracaDyplomowa.tytulPoPolsku}}</strong><br/>
                     <small>Recenzenta: {{pracaDyplomowa.recenzent.pracownik.imie}} {{pracaDyplomowa.recenzent.pracownik.nazwisko}}</small>
                   </td>
                   <td>
@@ -39,20 +39,20 @@
                 Informacje o pracy dyplomowej
               </div>
               <div class="card-body">
-                <strong>Tytuł pracy: </strong> <label class="text-danger" > {{pracaDyplomowa.tytul}} </label><br>
+                <strong>Tytuł pracy: </strong> <label class="text-danger" > {{pracaDyplomowa.tytulPoPolsku}} </label><br>
                 <label ><strong>Promotor: </strong> {{pracaDyplomowa.promotor?.pracownik?.imie}} {{recenzent?.pracaDyplomowa?.promotor?.pracownik?.nazwisko}}</label><br>
                 <label ><strong>Imię studenta: </strong> {{pracaDyplomowa.student?.imie}} </label><br>
                 <label ><strong>Nazwisko studenta: </strong> {{pracaDyplomowa.student?.nazwisko}}</label><br>
                 <label ><strong>Recenzent zaproponowany: </strong> {{pracaDyplomowa.recenzent?.pracownik.nazwisko}}</label><br>
                 <button *ngIf="edit != true" class="btn btn-outline-success btn-sm float-right" (click) = "akceptuj()">Akceptuj</button>
                 <button *ngIf="edit != true" class="btn btn-outline-info btn-sm float-right mr-2" (click)="editMethod()">Edituj recenzenta</button>
-              
+
                 <form *ngIf="edit==true" [formGroup]="form" (ngSubmit) = "addPropozycja()">
                     <div class="form-group">
                       <label for="recenzent"><strong>Recenzent: </strong></label>
                       <select class="form-control" id="recenzent" formControlName="recenzent">
                         <option [ngValue]="noSelected" selected selected>Wybierz...</option>
-                        <option [ngValue]="pracownik" *ngFor="let pracownik of pracownici"> 
+                        <option [ngValue]="pracownik" *ngFor="let pracownik of pracownici">
                             {{pracownik.imie}}  {{pracownik.nazwisko}}
                           </option>
                       </select>

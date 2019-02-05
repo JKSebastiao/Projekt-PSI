@@ -1,12 +1,12 @@
 package pl.edu.pwr.psi_project.model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIdentityReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import pl.edu.pwr.psi_project.model.enumerations.Stopien;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -19,7 +19,17 @@ public class PracaDyplomowa implements Serializable {
     private long id;
 
     @NotBlank
-    private String tytul;
+    private String tytulPoPolsku;
+
+    @NotNull
+    private String tytulPoAngielsku;
+
+    @NotNull
+    private String kierunek;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Stopien stopien;
 
     @OneToOne(
             cascade = CascadeType.ALL,
@@ -29,11 +39,21 @@ public class PracaDyplomowa implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "promotor_FK", insertable = false, updatable = false)
-    private Promotor promotor;
+    private Pracownik promotor;
 
-    @ManyToOne
-    @JoinColumn(name = "recenzent_FK")
-    private Recenzent recenzent;
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType. LAZY)
+    @JoinTable(name = "praca_dyplomowa_recenzent",
+            joinColumns = {@JoinColumn(
+                    name = "id_recenzenta",
+                    nullable = false,
+                    updatable = false)},
+            inverseJoinColumns = {@JoinColumn(
+                    name = "id_pracy_dyplomowej",
+                    nullable = false,
+                    updatable = false)})
+    private List<Pracownik> recenzenci;
 
     private boolean hasRecenzent;
 
@@ -45,12 +65,36 @@ public class PracaDyplomowa implements Serializable {
         this.id = id;
     }
 
-    public String getTytul() {
-        return tytul;
+    public String getTytulPoPolsku() {
+        return tytulPoPolsku;
     }
 
-    public void setTytul(String tytul) {
-        this.tytul = tytul;
+    public void setTytulPoPolsku(String tytulPoPolsku) {
+        this.tytulPoPolsku = tytulPoPolsku;
+    }
+
+    public String getTytulPoAngielsku() {
+        return tytulPoAngielsku;
+    }
+
+    public void setTytulPoAngielsku(String tytulPoAngielsku) {
+        this.tytulPoAngielsku = tytulPoAngielsku;
+    }
+
+    public String getKierunek() {
+        return kierunek;
+    }
+
+    public void setKierunek(String kierunek) {
+        this.kierunek = kierunek;
+    }
+
+    public Stopien getStopien() {
+        return stopien;
+    }
+
+    public void setStopien(Stopien stopien) {
+        this.stopien = stopien;
     }
 
     public Student getStudent() {
@@ -61,19 +105,20 @@ public class PracaDyplomowa implements Serializable {
         this.student = student;
     }
 
-    public Promotor getPromotor() {
+    public Pracownik getPromotor() {
         return promotor;
     }
 
-    public void setPromotor(Promotor promotor) {
+    public void setPromotor(Pracownik promotor) {
         this.promotor = promotor;
     }
 
-    public Recenzent getRecenzent() {
-        return recenzent;
+    public List<Pracownik> getRecenzenci() {
+        return recenzenci;
     }
-    public void setRecenzent(Recenzent recenzent) {
-        this.recenzent = recenzent;
+
+    public void setRecenzenci(List<Pracownik> recenzenci) {
+        this.recenzenci = recenzenci;
     }
 
     public boolean isHasRecenzent() {

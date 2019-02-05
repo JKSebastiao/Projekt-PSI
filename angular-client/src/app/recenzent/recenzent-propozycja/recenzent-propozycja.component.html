@@ -23,7 +23,7 @@
                 <tbody>
                 <tr *ngFor="let praca of listaPracDyplomowych">
                   <td>
-                    <strong>{{praca.tytul}}</strong><br/>
+                    <strong>{{praca.tytulPoPolsku}}</strong><br/>
                   </td>
                   <td>
                     <strong>{{praca.promotor}}</strong><br/>
@@ -41,17 +41,17 @@
                 Informacje o pracy dyplomowej
               </div>
               <div class="card-body">
-                <strong>Tytuł pracy: </strong> <label class="text-danger" > {{praca?.tytul}} </label><br>
+                <strong>Tytuł pracy: </strong> <label class="text-danger" > {{praca?.tytulPoPolsku}} </label><br>
                 <label ><strong>Promotor: </strong> {{praca?.promotor?.pracownik?.imie}} {{praca?.promotor?.pracownik?.nazwisko}}</label><br>
                 <label ><strong>Imię studenta: </strong> {{praca?.student?.imie}} </label><br>
                 <label ><strong>Nazwisko studenta: </strong> {{praca?.student?.nazwisko}}</label><br>
-              
+
                 <form [formGroup]="form" (ngSubmit) = "addPropozycja()">
                     <div class="form-group">
                       <label for="recenzent"><strong>Recenzent: </strong></label>
                       <select class="form-control" id="recenzent" formControlName="recenzent">
                         <option [ngValue]="noSelected" selected selected>Wybierz...</option>
-                        <option [ngValue]="pracownik" *ngFor="let pracownik of pracownici"> 
+                        <option [ngValue]="pracownik" *ngFor="let pracownik of pracownici">
                             {{pracownik.imie}}  {{pracownik.nazwisko}}
                           </option>
                       </select>
@@ -64,5 +64,6 @@
       </div>
     </div>
   </div>
-  
-  
+  <p-toast></p-toast>
+
+

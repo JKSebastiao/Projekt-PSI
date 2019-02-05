@@ -8,6 +8,7 @@ import pl.edu.pwr.psi_project.model.PracaDyplomowa;
 import pl.edu.pwr.psi_project.model.Pracownik;
 import pl.edu.pwr.psi_project.model.Student;
 import pl.edu.pwr.psi_project.repository.PracaDyplomowaRepository;
+import pl.edu.pwr.psi_project.repository.PracownikRepository;
 import pl.edu.pwr.psi_project.repository.StudentRepository;
 
 import java.util.ArrayList;
@@ -23,14 +24,15 @@ public class PracaDyplomowaService {
     @Autowired
     private StudentRepository studentRepository;
 
+    @Autowired
+    private PracownikRepository pracownikRepository;
+
     public List<PracaDyplomowa> getAll(){
         return pracaDyplomowaRepository.findAll();
     }
 
     public List<PracaDyplomowa> getAllPracyZRecenzentamiZaproponowanych(){
-        return pracaDyplomowaRepository.findAll()
-                .stream().filter(e -> e.getRecenzent().isPowolany() == false)
-                .collect(Collectors.toList());
+        return pracaDyplomowaRepository.findAll();
     }
 
     public PracaDyplomowa getById(long id){
@@ -61,9 +63,31 @@ public class PracaDyplomowaService {
     }
 
     public PracaDyplomowa update(long id, PracaDyplomowa pracaDyplomowa) {
-
         PracaDyplomowa pracaDyplomowaOld = getById(id);
         BeanUtils.copyProperties(pracaDyplomowa,pracaDyplomowaOld,"id");
         return save(pracaDyplomowaOld);
+    }
+
+    public PracaDyplomowa zaproponujRecenzenta(PracaDyplomowa pracaDyplomowa) {
+
+        if(pracaDyplomowa.getId() > 0) {
+            PracaDyplomowa pracaDyplomowaOld = getById(pracaDyplomowa.getId());
+            pracaDyplomowa.getRecenzenci().forEach(
+                    e -> {
+                        Pracownik pracownik = pracownikRepository.getOne(e.getId());
+                        pracaDyplomowaOld.getRecenzenci().add(pracownik);
+                    }
+            );
+            System.out.println(">>>> SALVOU O TRABALHO");
+            return save(pracaDyplomowaOld);
+        }
+        System.out.println(">>>> NAO EXISTE O TRABALHO");
+        return null;
+    }
+
+    public List<PracaDyplomowa> getAllDoRecenzji(){
+        return pracaDyplomowaRepository.findAll()
+                .stream()
+                .filter(e -> e.getRecenzenci().isEmpty()).collect(Collectors.toList());
     }
 }

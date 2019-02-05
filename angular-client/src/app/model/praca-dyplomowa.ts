@@ -1,7 +1,10 @@
 class PracaDyplomowa{
     id?: number;
-    tytul?: string;
+    tytulPoPolsku?: string;
+    tytulPoAngielsku?: string;
+    kierunek?: string;
+    stopien?: string;
     student?: Student;
-    promotor?: Promotor;
-    recenzent?: Recenzent;
+    promotor?: Pracownik;
+    recenzenci?: Pracownik[];
 }

@@ -2,26 +2,52 @@
 <form [formGroup]="form" class="needs-validation" novalidate (ngSubmit) = "addPracaDyplomowa()">
   <div class="card mt-2">
     <div class="card-header">
-      
+
       <h1 class="h2"> Zgłoszenie pracy dyplomowej</h1>
     </div>
     <div class="card-body">
-      <div class="form-row">
-        <div class="form-group col-md-12 " [ngClass]="aplyCSSError('tytul')">
-          <label for="tytul">Tytuł pracy:</label>
-          <input type="text" class="form-control" id="tytul" formControlName="tytul" required>
-          <div class="invalid-feedback"> Tytuł jest wymagany!</div>
+      <div class="row">
+        <div class="form-group col-md-12 " [ngClass]="aplyCSSError('tytulPoPolsku')">
+          <label for="tytulPoPolsku">Tytuł w języku polskim:</label>
+          <input type="text" class="form-control" id="tytulPoPolsku" formControlName="tytulPoPolsku" required>
+          <div class="invalid-feedback">Tytuł w języku polskim jest wymagany!</div>
         </div>
-        <div class="col-md-12" formGroupName ="student" >
-            <div class="form-group" [ngClass]="aplyCSSError('student.indeks')">
-              <label for="indeks">Nr indeksu studenta:</label>
-              <input type="number" class="form-control" id="Indeks" formControlName="indeks" required>
-              <div class="invalid-feedback">Nr indeksu studenta jest wymagany!</div>
-            </div>
+        <div class="form-group col-md-12 " [ngClass]="aplyCSSError('tytulPoPolsku')">
+          <label for="tytulPoAngielsku">Tytuł w języku angielskim:</label>
+          <input type="text" class="form-control" id="tytulPoAngielsku" formControlName="tytulPoAngielsku" required>
+          <div class="invalid-feedback">Tytuł w języku angielskim jest wymagany!</div>
+        </div>
+        <div class="col-md-4" formGroupName ="student" >
+          <div class="form-group" [ngClass]="aplyCSSError('student.indeks')">
+            <label for="indeks">Nr indeksu studenta:</label>
+            <input type="number" class="form-control" id="Indeks" formControlName="indeks" required>
+            <div class="invalid-feedback">Nr indeksu studenta jest wymagany!</div>
+          </div>
+      </div>
+        <div class="form-group col-md-4">
+          <label for="kiekunek">Kierunek:</label>
+          <select class="form-control custom-select" id="kierunek" formControlName="kierunek" required>
+            <option [ngValue]="noSelected" selected>Wybierz...</option>
+            <option [ngValue]="kierunek" *ngFor="let kierunek of kieruneki"> 
+              {{kierunek}}
+            </option>
+          </select>
+          <div class="invalid-feedback">Przewodniczacy jest wymagane!</div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="stopien">Stopień:</label>
+          <select class="form-control custom-select"  id="stopien" formControlName="stopien" required>
+            <option [ngValue]="noSelected" selected>Wybierz...</option>
+            <option [ngValue]="stopien" *ngFor="let stopien of stopieni"> 
+              {{stopien +" stopień"}}
+            </option>
+          </select>
+          <div class="invalid-feedback">Przewodniczacy jest wymagane!</div>
         </div>
       </div>
       <button type="submit" class="btn btn-success btn-lg float-right">+ Dodaj</button>
     </div>
   </div>
 </form>
+<p-toast></p-toast>
 

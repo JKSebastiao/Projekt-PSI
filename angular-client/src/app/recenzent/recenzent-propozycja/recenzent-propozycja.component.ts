@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RecenzentService } from '../recenzent.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { MessageService } from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-recenzent-propozycja',
   templateUrl: './recenzent-propozycja.component.html',
   styleUrls: ['./recenzent-propozycja.component.css']
 })
+
 export class RecenzentPropozycjaComponent implements OnInit {
   form: FormGroup;
   listaPracDyplomowych: PracaDyplomowa[] = [];
@@ -15,7 +17,8 @@ export class RecenzentPropozycjaComponent implements OnInit {
   noSelected = null;
   constructor(
     private recenzentService: RecenzentService, 
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private messageService: MessageService) { }
 
   ngOnInit() {
     this.recenzentService.getAllPraca().subscribe(response =>{
@@ -33,12 +36,22 @@ export class RecenzentPropozycjaComponent implements OnInit {
   }
 
   private addPropozycja(){
-    const recenzent: Recenzent = {listaPracyDyplomowych:[this.praca],pracownik:this.form.get('recenzent').value, powolany:false};
-    console.log(recenzent);
-    this.recenzentService.addPropozycja(recenzent).subscribe(
-      response => console.log(response), 
-      error => console.log(error)
+    const pracaDyplomowa: PracaDyplomowa = {id: this.praca.id, tytulPoPolsku: this.praca.tytulPoPolsku,
+      tytulPoAngielsku: this.praca.tytulPoAngielsku, student: this.praca.student, 
+      kierunek: this.praca.kierunek, stopien: this.praca.stopien,
+      recenzenci: [this.form.get('recenzent').value]};
+    console.log(pracaDyplomowa);
+    this.recenzentService.addPropozycja(pracaDyplomowa).subscribe(
+      response => this.showSuccessMessage("Recenzent zaproponowany!"), 
+      error => this.showErrorMessage("Ops! "+ error.message)
       );
+  }
+
+  showErrorMessage(message: string) {
+    this.messageService.add({severity:'error', summary:'Błąd !', detail: message});
+  }
+  showSuccessMessage(message: string) {
+    this.messageService.add({severity:'success', summary:'Sukces', detail: message});
   }
 
 }

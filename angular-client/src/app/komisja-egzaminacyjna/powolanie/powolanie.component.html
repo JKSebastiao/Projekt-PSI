@@ -1,62 +1,95 @@
-<form [formGroup]="form" class="needs-validation" novalidate (ngSubmit)= "createKomisja()">
-  <div class="card mt-2">
+<form [formGroup]="form" class="needs-validation" novalidate>
+  <div class="row">
+    <div class="card mt-2">
       <div class="card-header">
           <h1 class="h2"> Powołanie komisji egzaminacyjnej </h1>
         </div>
     <div class="card-body">
       <div class="row">
-        <div class="form-group col-md-4 " [ngClass]="aplyCSSError('budynek')">
+        <div class="form-group col-md-3 " [ngClass]="aplyCSSError('budynek')">
           <label for="budynek">Budynek:</label>
           <input type="text" class="form-control" id="budynek" formControlName="budynek" required>
           <div class="invalid-feedback">Budynek jest wymagane!</div>
         </div>
-        <div class="form-group col-md-4" [ngClass]="aplyCSSError('sala')">
+        <div class="form-group col-md-3" [ngClass]="aplyCSSError('sala')">
           <label for="sala">Sala:</label>
           <input type="text" class="form-control" id="sala" formControlName="sala" required>
           <div class="invalid-feedback">Sala jest wymagana!</div>
         </div>
-        <div class="form-group col-md-4" [ngClass]="aplyCSSError('data')">
+        <div class="form-group col-md-3" [ngClass]="aplyCSSError('data')">
           <label for="data">Data:</label>
-          <input type="text" class="form-control" id="data" formControlName="data" required>
+          <input type="date" class="form-control" id="data" formControlName="data" required>
+          <div class="invalid-feedback">Data jest wymagany!</div>
+        </div>
+        <div class="form-group col-md-3" [ngClass]="aplyCSSError('godzina')">
+          <label for="godzina">Godzina:</label>
+          <input type="time" class="form-control" id="godzina" formControlName="godzina" required>
           <div class="invalid-feedback">Data jest wymagany!</div>
         </div>
       </div>
       <div class="row">
-          <div class="form-group col-md-4">
-              <label for="przewodniczacy">Przewodniczacy:</label>
-              <select class="form-control custom-select" (change)="onPrzewodniczacyChanged()" id="przewodniczacy" formControlName="przewodniczacy" required>
-                <option [ngValue]="noSelected" selected>Wybierz...</option>
-                <option [ngValue]="pracownik" *ngFor="let pracownik of pracowniciForPrzewodniczacy"> 
-                  {{pracownik.imie}}  {{pracownik.nazwisko}}
-                </option>
-              </select>
-              <div class="invalid-feedback">Przewodniczacy jest wymagane!</div>
-            </div>
-
-
-        
+        <div class="form-group col-md-6">
+            <label for="czlonek">Członek:</label>
+            <select class="form-control custom-select" id="czlonek" formControlName="czlonek">
+              <option [ngValue]="noSelected" selected>Wybierz...</option>
+              <option [ngValue]="pracownik" *ngFor="let pracownik of pracownici"> 
+                {{pracownik.imie}}  {{pracownik.nazwisko}}
+              </option>
+            </select>
+          </div>
         <div class="form-group col-md-4">
-          <label for="czlonek">Drugi czlonek:</label>
-          <select class="form-control" (change)="onCzlonekChanged()" id="czlonek" formControlName="czlonek" aria-placeholder="Wybierz..." required>
+          <label for="czlonek">Rola:</label>
+          <select class="form-control custom-select" id="czlonek" formControlName="rola" aria-placeholder="Wybierz...">
                 <option [ngValue]="noSelected" selected>Wybierz...</option>
-                <option [ngValue]="pracownik" *ngFor="let pracownik of pracowniciForCzlonek" > 
-                  {{pracownik.imie}}  {{pracownik.nazwisko}}
-                </option>
+                <option [ngValue]="rola" *ngFor="let rola of roli" > {{rola}}</option>
             </select>
           <div class="invalid-feedback">Drugi czlonek jest wymagana!</div>
         </div>
-        <div class="form-group col-md-4">
-          <label for="sekretarz">Sekretarz:</label>
-          <select class="form-control" (change) = "onSekretarzChanged()" id="sekretarz" formControlName="sekretarz" required>
-              <option [ngValue]="noSelected" selected>Wybierz...</option>
-                <option [ngValue]="pracownik" *ngFor="let pracownik of pracowniciForCzlonek"> 
-                  {{pracownik.imie}}  {{pracownik.nazwisko}}
-                </option>
-            </select>
+        <div class="form-group col-md-2">
+          <label for="">.</label>
+          <button  (click) = "addCzlonek()" class=" form-control btn btn-outline-primary float-right">+ Dodaj</button>
         </div>
       </div>
-      <button  type="submit" class="btn btn-primary float-right">Powołaj</button>
     </div>
+  </div>
+  </div>
+  <div class="row">
+    <table class="table table-hover">
+      <thead class="bg-primary text-light">
+        <tr>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Tytuł</th>
+          <th>Stanowisko</th>
+          <th>Rola</th>
+          <th>Opcja</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let czlonek of czlonki">
+          <td>
+            {{czlonek.pracownik.imie}}
+          </td>
+          <td>
+            {{czlonek.pracownik.nazwisko}}
+          </td>
+          <td>
+            {{czlonek.pracownik.tytul}}
+          </td>
+          <td>
+            {{czlonek.pracownik.stanowiskoPracownika}}
+          </td>
+          <td>
+            {{czlonek.rola}}
+          </td>
+          <td>
+            <button (click)="deleteCzlonek(czlonek)" class="btn btn-outline-danger btn-sm mr-2">Usuń</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button  (click)= "createKomisja()" class=" form-control btn btn-primary col-2 mx-auto">Powołaj</button>
   </div>
   
 </form>
+<p-toast></p-toast>

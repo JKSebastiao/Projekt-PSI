@@ -14,8 +14,8 @@ export class RecenzentService {
     return this.http.get<PracaDyplomowa[]>(this.url+"pracy/dopropozycja/recenzent");
   }
 
-  addPropozycja(recenzent: Recenzent ): Observable<Recenzent>{
-    return this.http.post<Recenzent>(this.url+"recenzenci",recenzent);
+  addPropozycja(praca: PracaDyplomowa ): Observable<PracaDyplomowa>{
+    return this.http.post<PracaDyplomowa>(this.url+"pracy/propozycja/recenzent",praca);
   }
 
   addRecenzent(recenzent: Recenzent ): Observable<Recenzent>{
