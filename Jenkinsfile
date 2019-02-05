@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+	stage('Test') {
+            steps {
+		sh 'man test'
+            }
+        }
         stage('Build') {
             steps {
                 sh 'mvn clean package dockerfile:build'
